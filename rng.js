@@ -199,6 +199,14 @@ function getAutoFavoriteCards(rng, slotIndices) {
             slotIndices[j - 1] = temp;
         }
     }
+	
+	var autoFavorites = (slotIndices[0] + 1).toString();
+	
+	for (var i = 1; i < 6; i++) {
+		autoFavorites += ", " + (slotIndices[i] + 1).toString();
+	}
+	
+	return autoFavorites;
 }
 
 function findActualGoodTradersList(macAddress, numTraderAttempts, cardTraderList, goodCards, checkUnique) {

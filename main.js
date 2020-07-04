@@ -25,7 +25,9 @@ function checkRng() {
 		
 		macAddress = parseInt("0x" + macAddress4 + macAddress3 + macAddress2 + macAddress1);
 
-		$("#results").hide();
+		$("#resultsTable").html("");
+		$("#seedSelection").removeClass("border-bottom");
+		$("select[name=seeds]").html("");
 		$("#loading").show();
 		
 		inProgress = true;
@@ -55,18 +57,34 @@ function checkResponse(response) {
 	if (workersComplete == 13) {
 		inProgress = false;
 		console.log(new Date());
+		seeds.sort((a, b) => (a.seed > b.seed) ? 1 : -1);
 		console.log(seeds);
 		
-		$("#results").html("");
+		outputSeed(0);
+		$("#loading").hide();
+		workersComplete = 0;
 		
-		var dateTime = calculateDateTime(seeds[0].seed - macAddress);
-		
-		var seedInfo = $("<div></div>");
-		var bestSeedInfo = $("<span></span>").html("Seed: " + seeds[0].seed.toString(16) + ", Index: " + seeds[0].index + "&emsp;");
-		var dateTimeInfo = $("<span></span>").html("Date/Time: " + dateTime + "&emsp;");
-		var numCardsInfo = $("<span></span>").html("Number of Cards: " + seeds[0].numCards);
-		seedInfo.append(bestSeedInfo, dateTimeInfo, numCardsInfo);
-		$("#results").append(seedInfo);
+		for (var i = 0; i < 13; i++) {
+			workers[i].terminate();
+		}
+	}
+}
+
+function outputSeed(index) {
+	$("#seedSelection").addClass("border-bottom");
+	var seedSelect = $("select[name=seeds]");
+	
+	var emptyOption = $("<option></option>").attr("value", -1);
+	seedSelect.append(emptyOption);
+	for (var i = 0; i < seeds.length; i++) {
+		var seedOption = $("<option>Seed " + seeds[i].seed + ", Index " + seeds[i].index + "</option>").attr("value", i);
+		if (i == index) {
+			seedOption.attr("selected", true);
+		}
+		seedSelect.append(seedOption);
+	}
+	if (index != -1) {
+		generateSeedInfo(seeds[index]);
 		
 		var header = $("<div></div>").addClass("resultsHeader");
 		var rngPrimarys = new Array(4);
@@ -78,48 +96,65 @@ function checkResponse(response) {
 			rngPrimarys[i] = rngInstantiate(false);
 			rngTraders[i] = rngInstantiate(true);
 			
-			rngInit(rngPrimarys[i], seeds[0].seed);
+			rngInit(rngPrimarys[i], seeds[index].seed);
 			rngTwist(rngPrimarys[i]);
 			
-			rngPrimarys[i].index = seeds[0].index;
+			rngPrimarys[i].index = seeds[index].index;
 			var rngTraderSeed = rngNext(rngPrimarys[i]);
 			rngInit(rngTraders[i], rngTraderSeed);
 		}
-		$("#results").append(header);
+		$("#resultsTable").append(header);
 		
-		for (var i = 0; i < 15; i++) {
+		for (var i = 0; i < Math.max(seeds[index].numCards, 100); i++) {
 			var row = $("<div></div>").addClass("row");
 			
 			for (var j = 0; j < 4; j++) {
 				var card = simulateCardTraderRoll(rngTraders[j], TRADERS[traderNames[j]]);
 				
-				var col = $("<div></div>").html(CARDNAMES[card]).addClass("col");
+				var col = $("<div></div>").html("<img src='images/" + card + ".png' class='cardImg' /> " + CARDNAMES[card]).addClass("col");
 				row.append(col);
 			}
 			
-			$("#results").append(row);
+			$("#resultsTable").append(row);
 		}
-		
-		rngInit(rngPrimarys[0], seeds[0].seed);
-		rngTwist(rngPrimarys[0]);
-		rngPrimarys[0].index = seeds[0].index + 1;
-		
-		var slotIndices = new Array(6);
-		getAutoFavoriteCards(rngPrimarys[0], slotIndices);
-		
-		console.log("Slot indices (one-indexed): ");
-		for (var i = 0; i < 6; i++) {
-			console.log(slotIndices[i] + 1);
-		}
-		
-		for (var i = 0; i < 13; i++) {
-			workers[i].terminate();
-		}
-		
-		$("#results").show();
-		$("#loading").hide();
-		workersComplete = 0;
 	}
+}
+
+function generateSeedInfo(seed) {
+	var dateTime = calculateDateTime(seed.seed - macAddress);
+	
+	var rngPrimary = rngInstantiate(false);
+	var rngTrader = rngInstantiate(true);
+	
+	rngInit(rngPrimary, seed.seed);
+	rngTwist(rngPrimary);
+	rngPrimary.index = seed.index + 1;
+	
+	var slotIndices = new Array(6);
+	var autoFavorites = getAutoFavoriteCards(rngPrimary, slotIndices);
+	
+	console.log("Slot indices (one-indexed): ");
+	for (var i = 0; i < 6; i++) {
+		console.log(slotIndices[i] + 1);
+	}
+	
+	var row1 = $("<div></div>").addClass("row").addClass("border-bottom");
+	var seedInfo = $("<div></div>").html("<span class='title'>Seed</span><div> " + seed.seed.toString(16) + "</div>").addClass("col2").addClass("padding-13").addClass("border-right");
+	var indexInfo = $("<div></div>").html("<span class='title'>Index</span><div> " + seed.index + "</div>").addClass("col2").addClass("padding-13");
+	row1.append(seedInfo).append(indexInfo);
+	
+	var row2 = $("<div></div>").addClass("row").addClass("border-bottom");
+	var dateInfo = $("<div></div>").html("<span class='title'>Date</span><div> " + dateTime.date + "</div>").addClass("col2").addClass("padding-13").addClass("border-right");
+	var timeInfo = $("<div></div>").html("<span class='title'>Time</span><div> " + dateTime.time + "</div>").addClass("col2").addClass("padding-13");
+	row2.append(dateInfo).append(timeInfo);
+	
+	var row3 = $("<div></div>").addClass("row").addClass("border-bottom");
+	var numCardsInfo = $("<div></div>").html("<span class='title'>Number of Cards</span><div> " + seed.numCards + "</div>").addClass("col2").addClass("padding-13").addClass("border-right");
+	var autoFavoritesInfo = $("<div></div>").html("<span class='title'>Auto Favorites</span><div> " + autoFavorites + "</div>").addClass("col2").addClass("padding-13");
+	row3.append(numCardsInfo).append(autoFavoritesInfo);
+	
+	var numCardsInfo = $("<span></span>").html("Number of Cards: " + seed.numCards);
+	$("#resultsTable").append(row1).append(row2).append(row3);
 }
 
 function calculateDateTime(seedDiff) {
@@ -152,7 +187,21 @@ function calculateDateTime(seedDiff) {
 	
 	var days = seedDiff + 1;
 	
-	return "Month: " + months + ", Day: " + days + ", Year: " + years + ", Time: " + hours + ":" + minutes + ":" + 10;
+	return {
+		date: "Month: " + months + ", Day: " + days + ", Year: " + years,
+		time: hours + ":" + minutes + ":" + 10
+	}
+}
+
+function updateMacAddress(name) {
+	var value = document.getElementsByName(name)[0].value;
+	if (value.length >= 2) {
+		var nextId = parseInt(name.replace("macAddress", "")) + 1;
+		
+		if (nextId <= 6) {
+			document.getElementsByName("macAddress" + nextId)[0].focus();
+		}
+	}
 }
 
 function generateGoodCards(inputValue) {
