@@ -60,6 +60,18 @@ function checkResponse(response) {
 		seeds.sort((a, b) => (a.seed > b.seed) ? 1 : -1);
 		console.log(seeds);
 		
+		var seedSelect = $("select[name=seeds]");
+	
+		var emptyOption = $("<option></option>").attr("value", -1);
+		seedSelect.append(emptyOption);
+		for (var i = 0; i < seeds.length; i++) {
+			var seedOption = $("<option>Seed " + seeds[i].seed + ", Index " + seeds[i].index + "</option>").attr("value", i);
+			if (i == 0) {
+				seedOption.attr("selected", true);
+			}
+			seedSelect.append(seedOption);
+		}
+		
 		outputSeed(0);
 		$("#loading").hide();
 		workersComplete = 0;
@@ -72,17 +84,8 @@ function checkResponse(response) {
 
 function outputSeed(index) {
 	$("#seedSelection").addClass("border-bottom");
-	var seedSelect = $("select[name=seeds]");
+	$("#resultsTable").html("");
 	
-	var emptyOption = $("<option></option>").attr("value", -1);
-	seedSelect.append(emptyOption);
-	for (var i = 0; i < seeds.length; i++) {
-		var seedOption = $("<option>Seed " + seeds[i].seed + ", Index " + seeds[i].index + "</option>").attr("value", i);
-		if (i == index) {
-			seedOption.attr("selected", true);
-		}
-		seedSelect.append(seedOption);
-	}
 	if (index != -1) {
 		generateSeedInfo(seeds[index]);
 		
