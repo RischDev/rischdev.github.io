@@ -9,7 +9,7 @@
 		<div class="inputs">
 			<div class="row border-bottom">
 				<div class="col2 padding-13 border-right">
-					<span class="title">Mac Address</span>
+					<span class="title">MAC Address</span>
 					<div>
 						<input type="text" name="macAddress1" class="macAddress" onkeyup="updateMacAddress(this.name, this.value)" />
 						<input type="text" name="macAddress2" class="macAddress" onkeyup="updateMacAddress(this.name, this.value)" />
@@ -51,8 +51,52 @@
 				</div>
 			</div>
 			
-			<div class="padding-13">
+			<div class="row padding-13 border-bottom">
 				<button onclick="checkRng()" class="btn">Find Seeds</button>
+			</div>
+			
+			<div class="padding-13">
+				<span class="title">How to use the tool</span>
+				<div class="row padding-13 align-left">
+					<span class="section-title">How does Card Trader Manip work?</span>
+					<ul>
+						<li>The game initially seeds RNG based on your DS' MAC Address, as well as the date and time set for your DS.</li>
+						<li>The RNG index advances by 4 every time a shooting star appears on the title screen.</li>
+						<li>Once you press New Game, RNG advances approximately 170 times, then seeds your Card Trader.</li>
+						<li>Once seeded, nothing can change what your Card Traders will give you. You can only advance the Card Trader by using one of the 4 Card Traders.</li>
+					</ul>
+				</div>
+				<div class="row padding-13 align-left">
+					<span class="section-title">How do I get my MAC Address?</span>
+					<ul>
+						<li>Open up your DS, boot up Mega Man Star Force.</li>
+						<li>Either start up a New Game, or Continue your save file.</li>
+						<li>Open the menu with the X button, select ON AIR. You will be forced to save your game.</li>
+						<li>Select ON AIR, then Wi-Fi SETTINGS. You will be forced to save your game.</li>
+						<li>Select Options, then System Information. Your MAC Address will be displayed on the bottom screen.</li>
+					</ul>
+				</div>
+				<div class="row padding-13 align-left">
+					<span class="section-title">What are the other fields for?</span>
+					<ul>
+						<li><b>Number of Attempts: </b>Indicates how many times you will use the Card Trader. Keep in mind, you need 3 chips for BIG WAVE, 5 chips for Nacys, 10 chips for Scrapyard, and 10 chhips for AMAKEN per attempt.</li>
+						<li><b>Cards: </b>Comma-separated list of each card you want to get. For example: "StikyRain1, StikyRain2"</li>
+						<li><b>Card Trader: </b> The main Card Trader you are looking to use. You can only select one Card Trader at a time (for now).</li>
+						<li><b>Look for unique cards?: </b>Only check this if you want a single copy of each card in your list. Mostly used for Andromeda Infinity purposes.</li>
+					</ul>
+				</div>
+				<div class="row padding-13 align-left">
+					<span class="section-title">How can I test my manip?</span>
+					<ul>
+						<li>I recommend first testing your manip using an emulator. To do this, use <a href="https://emulation.gametechwiki.com/index.php/DeSmuME" target="_blank">DesMuMe v0.9.12</a> (Click on Latest Dev Build).</li>
+						<li>Use the following <a href="https://rischdev.github.io/Lua/MMSF1_HUD.lua">Lua Script</a> to set your MAC Address on the emulator. You will also need the following <a href="https://rischdev.github.io/Lua/MMSF1_CardList.txt" target="_blank">text file</a>.</li>
+						<li>Press New Game when the RNG Index reaches the number shown by the tool, minus 170.</li>
+						<li>Your RNG Index should now be 1 greater than the value shown by the tool. If not, you may have to go earlier or later.</li>
+						<li>Once your RNG index is correct, open your folder. Press Select, then Start Over, then press B to let the game pick your favorites. Verify the slots that get favorited are the same as the values listed under "Auto Favorites."</li>
+						<li>Once you've tested with emulator, find a visual cue to help you do the manip without the Lua Script. You can then try testing the manip on your DS.</li>
+						<li>The final thing to test is if you get the cards you expect to. You'll have to play the game up to that point in order to check.</li>
+					</ul>
+				</div>
 			</div>
 		</div>
 		

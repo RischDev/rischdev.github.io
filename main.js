@@ -125,6 +125,7 @@ function outputSeed(index) {
 
 function generateSeedInfo(seed) {
 	var dateTime = calculateDateTime(seed.seed - macAddress);
+	var numStars = (seed.index - 173) / 4;
 	
 	var rngPrimary = rngInstantiate(false);
 	var rngTrader = rngInstantiate(true);
@@ -136,15 +137,10 @@ function generateSeedInfo(seed) {
 	var slotIndices = new Array(6);
 	var autoFavorites = getAutoFavoriteCards(rngPrimary, slotIndices);
 	
-	console.log("Slot indices (one-indexed): ");
-	for (var i = 0; i < 6; i++) {
-		console.log(slotIndices[i] + 1);
-	}
-	
 	var row1 = $("<div></div>").addClass("row").addClass("border-bottom");
-	var seedInfo = $("<div></div>").html("<span class='title'>Seed</span><div> " + seed.seed.toString(16) + "</div>").addClass("col2").addClass("padding-13").addClass("border-right");
-	var indexInfo = $("<div></div>").html("<span class='title'>Index</span><div> " + seed.index + "</div>").addClass("col2").addClass("padding-13");
-	row1.append(seedInfo).append(indexInfo);
+	var seedInfo = $("<div></div>").html("<span class='title'>Seed, Index</span><div> " + seed.seed.toString(16) + ", " + seed.index + "</div>").addClass("col2").addClass("padding-13").addClass("border-right");
+	var starInfo = $("<div></div>").html("<span class='title'>Number of Stars on Title Screen</span><div> " + numStars + "</div>").addClass("col2").addClass("padding-13");
+	row1.append(seedInfo).append(starInfo);
 	
 	var row2 = $("<div></div>").addClass("row").addClass("border-bottom");
 	var dateInfo = $("<div></div>").html("<span class='title'>Date</span><div> " + dateTime.date + "</div>").addClass("col2").addClass("padding-13").addClass("border-right");
