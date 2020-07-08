@@ -25,6 +25,7 @@ function checkRng() {
 		
 		macAddress = parseInt("0x" + macAddress4 + macAddress3 + macAddress2 + macAddress1);
 
+		$("#resultsInfo").html("");
 		$("#resultsTable").html("");
 		$("#seedSelection").removeClass("border-bottom");
 		$("select[name=seeds]").html("");
