@@ -84,6 +84,7 @@ function checkResponse(response) {
 
 function outputSeed(index) {
 	$("#seedSelection").addClass("border-bottom");
+	$("#resultsInfo").html("");
 	$("#resultsTable").html("");
 	
 	if (index != -1) {
@@ -92,6 +93,8 @@ function outputSeed(index) {
 		var header = $("<div></div>").addClass("resultsHeader");
 		var rngPrimarys = new Array(4);
 		var rngTraders = new Array(4);
+		var smallCol = $("<div></div>").html("Card").addClass("col-small");
+		header.append(smallCol);
 		for (var i = 0; i < 4; i++) {
 			var col = $("<div></div>").html(traderNames[i]).addClass("col");
 			header.append(col);
@@ -109,7 +112,10 @@ function outputSeed(index) {
 		$("#resultsTable").append(header);
 		
 		for (var i = 0; i < Math.max(seeds[index].numCards, 100); i++) {
-			var row = $("<div></div>").addClass("row");
+			var row = $("<div></div>").addClass("table-row");
+			
+			smallCol = $("<div></div>").html(i + 1).addClass("col-small");
+			row.append(smallCol);
 			
 			for (var j = 0; j < 4; j++) {
 				var card = simulateCardTraderRoll(rngTraders[j], TRADERS[traderNames[j]]);
@@ -153,7 +159,7 @@ function generateSeedInfo(seed) {
 	row3.append(numCardsInfo).append(autoFavoritesInfo);
 	
 	var numCardsInfo = $("<span></span>").html("Number of Cards: " + seed.numCards);
-	$("#resultsTable").append(row1).append(row2).append(row3);
+	$("#resultsInfo").append(row1).append(row2).append(row3);
 }
 
 function calculateDateTime(seedDiff) {

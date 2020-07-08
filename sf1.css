@@ -76,7 +76,8 @@ input[type=text] {
 
 .resultsHeader {
 	font-weight: bold;
-	padding-top: 25px;
+	height: 50px;
+	display: table-row;
 }
 
 .title {
@@ -96,17 +97,40 @@ input[type=text] {
 	width: 100%;
 	overflow: auto;
 	text-align: center;
+	display: inline-block;
+}
+
+#resultsTable {
+	display: table;
+	width: 100%;
+}
+
+.table-row {
+	font-weight: normal;
+	vertical-align: middle;
+	width: 100%;
+	overflow: auto;
+	text-align: center;
+	display: table-row;
 }
 
 .col {
-	width: 24%;
-	display: inline-block;
+	width: 22%;
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.col-small {
+	width: 8%;
+	display: table-cell;
+	vertical-align: middle;
 }
 
 .col2 {
 	width: 49%;
 	display: inline-block;
 	float: left;
+	margin-top: 10px;
 }
 
 .padding-13 {
