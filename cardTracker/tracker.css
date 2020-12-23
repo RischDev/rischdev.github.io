@@ -21,3 +21,11 @@
 .found {
 	opacity: 0.35;
 }
+
+.reset {
+	display: block;
+	margin: 0px auto;
+	width: 10%;
+	height: 30px;
+	font-size: 20px;
+}
