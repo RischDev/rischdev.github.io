@@ -6,8 +6,8 @@ $(document).ready(function() {
 	
 	foundArray = JSON.parse(localStorage.getItem("foundArray"));
 	
-	if (foundArray == null) {
-		foundArray = [];
+	if (foundArray == null || foundArray.length == 0) {
+		foundArray = [0, 3, 9, 13, 22, 23, 24, 126, 127, 134, 148, 149];
 	}
 	
 	foundArray.forEach(updateFound);
@@ -53,7 +53,9 @@ function updateFound(id, index) {
 function resetFound() {
 	$(".found").toggleClass("found");
 	
-	foundArray = [];
+	foundArray = [0, 3, 9, 13, 22, 23, 24, 126, 127, 134, 148, 149];
+	
+	foundArray.forEach(updateFound);
 	
 	localStorage.setItem("foundArray", JSON.stringify(foundArray));
 }

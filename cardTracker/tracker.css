@@ -4,11 +4,62 @@
 		 url('../fonts/SFBold.ttf') format('truetype'),
 		 url('../fonts/SFBold.woff') format('woff');
 }
+
+body {
+	margin: 0px;
+}
+
+.wrapper {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.notes {
+	overflow: scroll;
+	width: 65%;
+	height: 100vh;
+}
+
+.tracker {
+	overflow: scroll;
+	width: 35%;
+	height: 100vh;
+	font-family: SFBold;
+	font-variant-ligatures: discretionary-ligatures;
+	background: rgb(32, 40, 48);
+	color: #FFF;
+	text-shadow: 1px 1px 0 #414951;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: left;
+}
+
+.tracker h2 {
+	width: 100%;
+}
+
+.col-left {
+	width: 40%;
+}
+
+.col-right {
+	width: 55%;
+}
+
+.col-right img {
+	width: 100%;
+}
 		
 .card-list {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
+}
+
+.card-header {
+	width: 154px;
+	margin: 5px;
 }
 
 .card {
@@ -18,8 +69,6 @@
 	border-radius: 5px;
 	display: inline-block;
 	margin: 5px;
-	color: #FFF;
-	text-shadow: 1px 1px 0 #414951;
 }
 
 .standard {
@@ -36,8 +85,6 @@
 
 .title {
 	font-size: 16px;
-	font-family: SFBold;
-	font-variant-ligatures: discretionary-ligatures;
 	padding: 5px;
 }
 
@@ -56,7 +103,8 @@
 .reset {
 	display: block;
 	margin: 0px auto;
-	width: 10%;
+	width: 20%;
 	height: 30px;
 	font-size: 20px;
+	margin-top: 10px;
 }
