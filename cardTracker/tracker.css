@@ -7,6 +7,8 @@
 
 body {
 	margin: 0px;
+	background: rgb(32, 40, 48);
+	color: #FFF;
 }
 
 .wrapper {
@@ -15,28 +17,40 @@ body {
 	justify-content: center;
 }
 
-.notes {
+#notes {
 	overflow: scroll;
 	width: 65%;
 	height: 100vh;
+	font-size: 24px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: left;
 }
 
-.tracker {
+#tracker {
 	overflow: scroll;
 	width: 35%;
 	height: 100vh;
 	font-family: SFBold;
 	font-variant-ligatures: discretionary-ligatures;
-	background: rgb(32, 40, 48);
-	color: #FFF;
 	text-shadow: 1px 1px 0 #414951;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: left;
 }
 
-.tracker h2 {
+#tracker h2 {
 	width: 100%;
+}
+
+.header {
+	width: -moz-calc(100% - 15px);
+	width: -webkit-calc(100% - 15px);
+	width: -o-calc(100% - 15px);
+	width: calc(100% - 15px);
+	margin: 5px 15px;
+	margin-top: 10px;
+	overflow: auto;
 }
 
 .col-left {
@@ -58,8 +72,10 @@ body {
 }
 
 .card-header {
-	width: 154px;
-	margin: 5px;
+	width: 90%;
+	margin: 5px 5%;
+	display: flex;
+	justify-content: center;
 }
 
 .card {
@@ -101,10 +117,21 @@ body {
 }
 
 .reset {
-	display: block;
-	margin: 0px auto;
 	width: 20%;
 	height: 30px;
 	font-size: 20px;
 	margin-top: 10px;
+}
+
+.collapse:hover, .expand:hover {
+	cursor: pointer;
+}
+
+.right {
+	display: inline-block;
+	float: right;
+}
+
+.hidden {
+	display: none;
 }

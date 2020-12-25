@@ -6,7 +6,12 @@
 	</head>
 	<body>
 		<div class="wrapper">
-			<div class="notes">
+			<div id="notes">
+				<div class="header">
+					<img id="notes-collapse" class="collapse" src="../icons/collapse-left.png" />
+					
+					<img id="notes-expand" class="expand right hidden" src="../icons/collapse-left.png" />
+				</div>
 				<div id="map1" class="wrapper">
 					<div class="col-left">
 						<ul>
@@ -25,13 +30,13 @@
 					<div class="col-left">
 						<ul>
 							<li>Check Transer of young woman, young boy, young man.</li>
-							<li>Grab GrassStage BMW. Folder edit in speaker notes. Equip S. Fist.</li>
+							<li>Grab GrassStage BMW. Folder edit. Equip S. Fist.</li>
 							<li>Check Transer of teenage boy.</li>
 							<li>Grab 800z BMW.</li>
 							<li>Check Transer of old man.</li>
 							<li>After cutscene, enter Car Comp.</li>
 							<li>Fight Jammer at top of Comp.</li>
-							<li>Pulse out, head homeand go to sleep.</li>
+							<li>Pulse out, head home and go to sleep.</li>
 						</ul>
 					</div>
 					<div class="col-right">
@@ -68,11 +73,11 @@
 						<ul>
 							<li>Grab each of the following items:
 								<ul>
-									<li>HPMem20
-									<li>TetKeyA
-									<li>TetKeyB
-									<li>TetKeyC
-									<li>TetKeyD
+									<li>HPMem20</li>
+									<li>TetKeyA</li>
+									<li>TetKeyB</li>
+									<li>TetKeyC</li>
+									<li>TetKeyD</li>
 								</ul>
 							</li>
 							<li>Fight Taurus Fire. Get 1000z.</li>
@@ -83,23 +88,22 @@
 					</div>
 				</div>
 			</div>
-			<div class="tracker">
-				<button class="reset" onclick="resetFound()"> Reset</button>
-				<div id="standard" class="card-list"> 
-					<div class="card-header">
-						<h2>Standard</h2>
-					</div>
-					<div class="card-header"> </div>
-					<div class="card-header"> </div>
+			<div id="tracker">
+				<div class="header"> 
+					<img id="tracker-expand" class="expand hidden" src="../icons/collapse-right.png" />
+					<button class="reset" onclick="resetFound()">Reset</button>
+					<img id="tracker-collapse" class="collapse right" src="../icons/collapse-right.png" />
 				</div>
 				
-				<div id="mega" class="card-list">
-					<div class="card-header">
+				<div class="card-header">
+					<h2>Standard</h2>
+				</div>
+				<div id="standard" class="card-list">  </div>
+				
+				<div class="card-header">
 						<h2>Mega</h2>
 					</div>
-					<div class="card-header"> </div>
-					<div class="card-header"> </div>
-				</div>
+				<div id="mega" class="card-list"> </div>
 			</div>
 		</div>
 		

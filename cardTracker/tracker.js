@@ -13,6 +13,39 @@ $(document).ready(function() {
 	foundArray.forEach(updateFound);
 });
 
+$(document).on("click", ".collapse", function() {
+	let id = $(this).parent().parent().attr("id");
+	
+	$("#" + id).toggle();
+	
+	if (id == "notes") {
+		$("#tracker").css("width", "100%");
+		$("#tracker-collapse").toggle();
+		$("#tracker-expand").toggle();
+	} else {
+		$("#notes").css("width", "100%");
+		$("#notes-collapse").toggle();
+		$("#notes-expand").toggle();
+	}
+});
+
+$(document).on("click", ".expand", function() {
+	let id = $(this).parent().parent().attr("id");
+	
+	
+	if (id == "notes") {
+		$("#tracker").toggle();
+		$("#notes").css("width", "65%");
+		$("#notes-collapse").toggle();
+		$("#notes-expand").toggle();
+	} else {
+		$("#notes").toggle();
+		$("#tracker").css("width", "35%");
+		$("#tracker-collapse").toggle();
+		$("#tracker-expand").toggle();
+	}
+});
+
 $(document).on("click", ".card", function() {
 	$(this).toggleClass("found");
 	
