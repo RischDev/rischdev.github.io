@@ -83,9 +83,9 @@ const CARDS = {
     MopLance1: 81,
     MopLance2: 82,
     MopLance3: 83,
-    Fokx_Fu1: 84,
-    Fokx_Fu2: 85,
-    Fokx_Fu3: 86,
+    'Fokx-Fu1': 84,
+    'Fokx-Fu2': 85,
+    'Fokx-Fu3': 86,
     VulcnSeed1: 87,
     VulcnSeed2: 88,
     VulcnSeed3: 89,
@@ -148,7 +148,7 @@ const CARDS = {
     GNullStage: 146,
     HolyPanel: 147,
     ParlyzPlus: 148,
-    Attack_10: 149,
+    'Attack+10': 149,
     TaurusFire: 150,
     TaursFireEX: 151,
     TaursFireSP: 152,
@@ -187,7 +187,7 @@ const CARDS = {
     DragonSkySP: 185
 };
 
-const CARDNAMES = [
+const STANDARD = [
 	"Cannon",
     "PlusCannon",
     "HevyCannon",
@@ -272,9 +272,9 @@ const CARDNAMES = [
     "MopLance1",
     "MopLance2",
     "MopLance3",
-    "Fokx_Fu1",
-    "Fokx_Fu2",
-    "Fokx_Fu3",
+    "Fokx-Fu1",
+    "Fokx-Fu2",
+    "Fokx-Fu3",
     "VulcnSeed1",
     "VulcnSeed2",
     "VulcnSeed3",
@@ -337,7 +337,10 @@ const CARDNAMES = [
     "GNullStage",
     "HolyPanel",
     "ParlyzPlus",
-    "Attack_10",
+    "Attack+10"
+];
+
+const MEGA = [
     "TaurusFire",
     "TaursFireEX",
     "TaursFireSP",
@@ -375,3 +378,5 @@ const CARDNAMES = [
     "DragonSkyEX",
     "DragonSkySP"
 ];
+
+const CARDNAMES = STANDARD.concat(MEGA);

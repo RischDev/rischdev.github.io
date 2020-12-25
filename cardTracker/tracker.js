@@ -1,7 +1,8 @@
 var foundArray;
 
 $(document).ready(function() {
-	CARDNAMES.forEach(generateCard);
+	STANDARD.forEach(generateStandard);
+	MEGA.forEach(generateMega);
 	
 	foundArray = JSON.parse(localStorage.getItem("foundArray"));
 	
@@ -24,9 +25,23 @@ $(document).on("click", ".card", function() {
 	localStorage.setItem("foundArray", JSON.stringify(foundArray));
 });
 
-function generateCard(name, index) {
-	$("body").append(`<div id="${CARDS[name]}" class="card">
-			<div class="title">${CARDS[name] + 1}. ${name}</div>
+function generateStandard(name, index) {
+	$("#standard").append(`<div id="${CARDS[name]}" class="card standard">
+			<div class="title">${(CARDS[name] + 1).toString().padStart(3, "0")} ${name}</div>
+			<img class="icon" src="../images/${CARDS[name]}.png" />
+		</div>`);
+}
+
+function generateMega(name, index) {
+	$("#mega").append(`<div id="${CARDS[name]}" class="card mega">
+			<div class="title">${(CARDS[name] - 149).toString().padStart(3, "0")} ${name}</div>
+			<img class="icon" src="../images/${CARDS[name]}.png" />
+		</div>`);
+}
+
+function generateGiga(name, index) {
+	$("#mega").append(`<div id="${CARDS[name]}" class="card giga">
+			<div class="title">${(CARDS[name] - 149).toString().padStart(3, "0")} ${name}</div>
 			<img class="icon" src="../images/${CARDS[name]}.png" />
 		</div>`);
 }

@@ -1,21 +1,52 @@
+@font-face {
+	font-family: 'SFBold';
+	src: url('../fonts/SFBold.woff2') format('woff2'),
+		 url('../fonts/SFBold.ttf') format('truetype'),
+		 url('../fonts/SFBold.woff') format('woff');
+}
+		
+.card-list {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
 .card {
-	background: #dedede;
-	width: 9%;
+	width: 154px;
 	height: 150px;
 	border: 1px solid black;
 	border-radius: 5px;
-	text-align: center;
 	display: inline-block;
-	margin: 5px 0.4%;
+	margin: 5px;
+	color: #FFF;
+	text-shadow: 1px 1px 0 #414951;
+}
+
+.standard {
+	background: #fbba20
+}
+
+.mega {
+	background: #28aafb;
+}
+
+.giga {
+	background: #db2020;
 }
 
 .title {
-	font-weight: bold;
-	font-size: 14px;
+	font-size: 16px;
+	font-family: SFBold;
+	font-variant-ligatures: discretionary-ligatures;
+	padding: 5px;
 }
 
 .icon {
-	width: 80%;
+	width: 144px;
+	image-rendering: -moz-crisp-edges;
+	image-rendering: pixelated;
+	display: block;
+	margin: 0px auto;
 }
 
 .found {
