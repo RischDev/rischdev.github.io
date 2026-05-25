@@ -41,6 +41,10 @@
             {
                 "title": "BN5 Colonel Any% No ASE",
                 "path": "mmbn5c_no_ase"
+            },
+			{
+                "title": "BN5 Colonel Any% (w/ ACE)",
+                "path": "mmbn5_any_ace"
             }
         ]
     },
